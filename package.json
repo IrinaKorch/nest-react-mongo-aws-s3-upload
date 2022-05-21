@@ -4,7 +4,9 @@
   "description": "fullstack project with react ui to upload multipart form data to mongodb and aws s3 bucket",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run start --prefix frontend\" \"npm run start:dev --prefix backend\""
+    "start": "concurrently \"npm run start --prefix frontend\" \"npm run start:dev --prefix backend\"",
+    "client": "npm run start --prefix frontend",
+    "server": "npm run start:dev --prefix backend"
   },
   "repository": {
     "type": "git",

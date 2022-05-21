@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap')
+
+//Common===================================
+
+$col: 100%/12
+
+$ubuntu: 'Ubuntu', sans-serif
+$roboto: 'Roboto', sans-serif
+$border: 1px solid #ccc
+$shadow-big: 2px 2px 5px rgba(0, 0, 0, 0.2)
+$shadow-big-dark: 2px 2px 5px rgba(0, 0, 0, 0.3)
+$shadow-small: 1px 1px 2px rgba(0, 0, 0, 0.1)
+$backdrop-color: rgba(0, 0, 0, 0.8)
+
+
+$theme-color-dark: #FC7864
+$theme-color-light: #ffd1be
+$main-bg:  #fdf4f1
+$gray: #C5C1D7FF
+
+
+@mixin wh100
+  width: 100%
+  height: 100%
+
+@mixin mp0
+  margin: 0
+  padding: 0
+
+@mixin flex-col
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+@mixin flex-row
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  align-self: stretch
+
+//Header====================================
+
+$danger: #e3564d
+$arrow-size: 16px
+$header-height-lg: 100px
+$header-height-sm: 70px
+$nav-height: 50px
+$header-font: 'Comfortaa', cursive
+$nav-color: #fff
+$nav-active: #f55863
+$nav-sm-color: saddlebrown
+$nav-sm-active-bg: blanchedalmond
+
+$header-bg: linear-gradient(to right, $theme-color-dark, $theme-color-light)
+
+//Footer====================================
+
+$footer-height: 230px
+$footer-bg: #32353d
+$footer-color: #c5c1d7
+
+$padding: 0.75rem !default
+
+.container-gapless, .container-gapless-md, .container-gapless-lg,
+.container, .container-md, .container-lg
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  align-self: center
+
+
+.container-gapless, .container-gapless-md, .container-gapless-lg
+  margin: 0
+  padding: 0
+  width: 100%
+  min-width: 300px
+
+.container, .container-lg, .container-md
+  width: 100%
+  min-width: 300px
+  padding-left: $padding
+  padding-right: $padding
+
+
+@media (min-width: 576px)
+  .container, .container-gapless, .container-md, .container-gapless-md
+    max-width: 540px
+
+@media (min-width: 768px)
+  .container, .container-gapless
+    max-width: 720px
+
+@media (min-width: 992px)
+  .container, .container-gapless
+    max-width: 960px
+
+@media (min-width: 1200px)
+  .container, .container-gapless, .container-lg, .container-gapless-lg
+    max-width: 1140px
+  .container, .container-lg
+    padding: 0 1.5rem
+
+@media (min-width: 1400px)
+  .container, .container-gapless, .container-lg, .container-gapless-lg
+    max-width: 1320px

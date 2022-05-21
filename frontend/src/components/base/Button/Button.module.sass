@@ -1,0 +1,50 @@
+@import '../../../variables'
+
+.Button
+  margin: 15px 10px
+  padding: 10px
+  outline: none
+  border-radius: 3px
+  box-shadow: $shadow-big
+  min-width: 40px
+  height: 40px
+  border: transparent
+  &:hover
+    box-shadow: $shadow-big-dark
+  &:active
+    box-shadow: $shadow-small
+  &.default, &.common
+    color: white
+    background: $theme-color-dark
+    &:hover
+      color: $theme-color-dark
+      background: white
+      border: 1px solid $theme-color-dark
+
+  &.delete, &.edit, &.save, &.clip
+    background: white
+    font-size: large
+    border: none
+    &:hover
+      color: white
+      border: none
+  &.delete
+    color: $danger
+    &:hover
+      background: $danger
+  &.edit
+    color: #6c757d
+    &:hover
+      background: #6c757d
+  &.save, &.clip
+    color: royalblue
+    &:hover
+      background: royalblue
+
+  &.danger
+    color: white
+    background: $danger
+    &:hover
+      color: $danger
+      background: white
+      border: 1px solid $danger

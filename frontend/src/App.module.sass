@@ -1,0 +1,29 @@
+@import './variables'
+
+.App
+  @include flex-col
+  @extend .container-gapless-lg
+  font-family: $ubuntu
+
+html, textarea
+  &::-webkit-scrollbar
+    width: 7px
+    background-color: #f9f9fd
+
+    &-thumb
+      background-color: lightslategray
+
+    &-track
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2)
+      background-color: #fff
+
+textarea::-webkit-scrollbar
+  width: 2px
+
+body
+  overflow-x: hidden
+  position: relative
+
+
+
+

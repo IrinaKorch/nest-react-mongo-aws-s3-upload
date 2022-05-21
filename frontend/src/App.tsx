@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import axios from 'axios'
+import classes from './App.module.sass'
+import NewsForm from './components/NewsForm/NewsForm'
+import NewsList from './components/NewsList/NewsList'
+import {INewsList} from './types/News'
+// import Navbar from './components/Navbar/Navbar'
 
-function App() {
+const App: React.FC = () => {
+
+  const [newsList, setNewsList] = useState<INewsList>([])
+
+  useEffect(() => {
+    // fetchNewsList()
+  }, [])
+
+  async function fetchNewsList() {
+    try {
+      const res = await axios.get<INewsList>('http://localhost:5000/api')
+      setNewsList(res.data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <div className={classes.App}>
+        {/*<Navbar/>*/}
+        <NewsForm/>
+        {/*<NewsList newsList={newsList}/>*/}
+      </div>
+    </Router>
+  )
 }
 
-export default App;
+export default App

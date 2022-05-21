@@ -1,0 +1,256 @@
+@import '../../variables'
+
+.Navbar
+  @include flex-col
+  width: 100%
+  margin: 0
+  padding: 0
+
+.fa_chevron_down
+  @include flex-row
+  color: inherit
+  margin-left: 5px
+  transition: transform 0.3s
+
+.fa_bars
+  color: white
+  font-size: 2rem
+
+header
+  @include flex-row
+  justify-content: center
+  flex: 0 0 auto
+  width: 100%
+  font-family: $header-font
+  position: sticky
+  top: 0
+  z-index: 5
+  user-select: none
+  font-size: 1rem
+  background: white
+
+
+.navbar
+  &__container
+    @extend .container-gapless-lg
+    @include flex-col
+    padding-left: 0
+    position: relative
+
+  &__wrap
+    @include flex-row
+    width: 100%
+    padding: 0 1rem
+    height: $header-height-sm
+    background: $header-bg
+
+  &__brand
+    display: block
+    max-width: 50%
+    height: 35px
+
+    .logo
+      height: 100%
+
+  &__toggler
+    display: block
+    margin-left: auto
+    width: 40px
+    height: 40px
+    background: transparent
+    padding: 0
+    border: none
+    outline: none
+    &:active, &:focus
+      outline: none
+
+  &__nav
+    right: -100vw
+    @include flex-col
+    justify-content: flex-start
+    @include mp0
+    width: 90%
+    height: 100vh
+    color: $nav-sm-color
+    overflow-y: auto
+    position: absolute
+    top: $header-height-sm
+    background: white
+    z-index: 5
+    transition: right 1s ease
+    &.show, .collapsing
+      right: 0
+
+
+.nav__link
+  @include flex-col
+  flex: 0 0 45px
+  align-items: flex-start
+  width: 100%
+  justify-content: center
+  padding: 0 1rem
+  border-bottom: 1px solid #CCC
+  text-decoration: none
+  color: $nav-sm-color
+
+  &:hover
+    color: $nav-sm-color
+    background: $nav-sm-active-bg
+
+  &:active
+    color: $nav-sm-color
+    font-weight: bolder
+
+  &.active
+    background: $nav-sm-active-bg
+
+.nav__dropdown
+  @include flex-col
+  align-items: flex-start
+  width: 100%
+  padding: 0 1rem
+
+.nav__dropdown__toggler
+  display: flex
+  @include wh100
+  padding: 1rem 0
+
+  &:hover
+    background: transparent
+
+  &.show
+    border-bottom: 1px solid transparent
+    color: $nav-sm-color
+    font-weight: bolder
+    background: transparent
+    & .fa-chevron-down
+      transform: rotateX(180deg)
+
+    &:hover
+      color: $nav-sm-color
+      border-bottom: none
+
+    &:active
+      color: $nav-sm-color
+      font-weight: bolder
+
+.nav__dropdown__menu
+  display: none
+  &.show
+    @include flex-col
+    @include mp0
+    width: 100%
+
+.dropdown__link
+  @extend .nav__link
+
+
+@media screen and (min-width: 768px)
+  .navbar__nav
+    width: 40%
+
+@media screen and (min-width: 1200px)
+  header
+    background: $header-bg
+    flex: 0 0 $header-height-lg
+    box-shadow: $shadow-big
+
+  .navbar
+    &__container
+      @include flex-row
+      position: static
+
+    &__wrap
+      @include flex-row
+      width: $col*5
+      height: auto
+      background: transparent
+
+    &__brand
+      display: block
+      max-width: 100%
+      height: 45px
+
+      .logo
+        height: 100%
+
+    &__toggler
+      display: none
+    &__nav
+      @include flex-row
+      padding: 0 1.5rem
+      width: $col*6
+      margin-right: $col*1
+      height: auto
+      color: $nav-color
+      overflow-y: visible
+      position: static
+      background: transparent
+  .nav__link
+    flex: 1 0 $col
+    margin: 1rem
+    height: $nav-height
+    justify-content: center
+    align-items: center
+    border-bottom: 1px solid transparent
+    color: $nav-color
+    &:hover
+      color: $nav-color
+      background: transparent
+      font-weight: bolder
+    &:active
+      color: #ffddd0
+      font-weight: bolder
+    &.active
+      background: transparent
+      border-bottom: 1px solid white
+      font-weight: bolder
+
+  .nav__dropdown
+    position: relative
+    flex: 1 0 $col
+    margin: 1rem
+    align-items: center
+  .nav__dropdown__toggler
+    font-weight: normal
+    &.show
+      color: $nav-color
+      &:hover
+        color: $nav-color
+        border-bottom: 1px solid transparent
+      &:active
+        color: $nav-color
+        font-weight: bolder
+
+  .nav__dropdown__menu
+    &.show
+      @include flex-col
+      align-items: flex-start
+      position: absolute
+      top: $header-height-lg - $nav-height + 10px
+      width: 250px
+      padding: 1rem
+      background: white
+      border-radius: 5px
+      box-shadow: $shadow-big
+      right: 0
+      font-size: smaller
+
+  .dropdown__link
+    width: 100%
+    @include flex-row
+    @include mp0
+    margin-bottom: 1rem
+    justify-content: flex-start
+    color: $nav-active
+    &:last-child
+      margin-bottom: 0
+    &:hover
+      text-decoration: underline
+      color: $nav-active
+      font-weight: normal
+    &.active
+      &:hover
+        border-bottom: 1px solid transparent
+        font-weight: bolder
+        text-decoration: none

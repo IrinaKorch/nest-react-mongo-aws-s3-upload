@@ -1,0 +1,32 @@
+@import '../../variables'
+
+.NewsItem
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  padding: 20px
+  margin-bottom: 15px
+  border: 1px solid #ccc
+  border-radius: 5px
+
+.date
+  color: #A8A4BB
+  font-size: x-small
+
+
+.media
+  @include flex-row
+  justify-content: center
+  flex-wrap: wrap
+  width: 500px
+  img
+    margin: 5px
+    height: 50px
+  img:first-child
+    margin: 0
+    height: auto
+    width: 100%
+
+
+
+

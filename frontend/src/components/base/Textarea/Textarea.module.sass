@@ -1,0 +1,16 @@
+@import '../../../variables'
+
+.Textarea
+  @include flex-row
+  resize: vertical
+  height: 75px
+  margin: 0 0 5px 0
+  padding: 10px
+  border: 1px solid $theme-color-dark
+  border-radius: 3px
+  outline: none
+  font-size: smaller
+
+  &::placeholder
+    color: $gray
+    font-size: small
