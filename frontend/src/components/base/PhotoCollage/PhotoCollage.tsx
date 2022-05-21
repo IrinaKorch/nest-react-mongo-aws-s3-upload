@@ -3,6 +3,7 @@ import {IPhotoCollageProps} from './PhotoCollageTypes'
 import classes from './PhotoCollage.module.sass'
 import {v4 as uuid} from 'uuid'
 import LastImages from './LastImages'
+import Gallery from './Gallery'
 
 const PhotoCollage: FC<IPhotoCollageProps> = (props: IPhotoCollageProps) => {
 
@@ -24,37 +25,10 @@ const PhotoCollage: FC<IPhotoCollageProps> = (props: IPhotoCollageProps) => {
       extraImages = images.length - 5
     }
   }
+
   const handleClick = (index: number | null) => {
     setActive(index)
   }
-  const handleNext: MouseEventHandler<HTMLButtonElement | HTMLImageElement> = (event) => {
-    event.stopPropagation()
-    if (images) {
-      setActive(prevState => {
-        if (prevState !== null && prevState < images.length-1) {
-          return (prevState + 1)
-        }
-        return 0
-      })
-    }
-
-  }
-
-  const handlePrev: MouseEventHandler<HTMLButtonElement> = (event) => {
-    event.stopPropagation()
-    if (images) {
-      setActive(prevState => {
-        if (prevState !== null && prevState > 0) {
-          return (prevState - 1)
-        }
-        return (images.length - 1)
-      })
-    }
-  }
-
-
-
-
 
   if (images && images.length>0) {
     return (
@@ -63,17 +37,7 @@ const PhotoCollage: FC<IPhotoCollageProps> = (props: IPhotoCollageProps) => {
         {firstImage && <div onClick={()=> handleClick(0)} key={uuid()} className={classes.firstImage}><img src={images[0]} alt=""/></div>}
         {lastImages && <LastImages handleClick={handleClick} lastImages={lastImages}/>}
         {extraImages && <div onClick={() => handleClick(4)} className={classes.extraImages}>{'+ ' + extraImages}</div>}
-        {active !== null && (
-          <div
-            className={classes.activeImage}
-            onClick={() => handleClick(null)}
-          >
-            <button onClick={handlePrev} className={classes.prev}><i className="fa-solid fa-chevron-left"/></button>
-            <img onClick={handleNext} src={images[active]} alt=""/>
-            <button onClick={handleNext} className={classes.next}><i className="fa-solid fa-chevron-right"/></button>
-          </div>
-        )
-        }
+        <Gallery image={active} setImage={setActive} images={images}/>
       </div>
     )
   } else {
