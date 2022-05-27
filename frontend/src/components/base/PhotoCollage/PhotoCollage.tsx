@@ -1,4 +1,4 @@
-import {FC, MouseEventHandler, useState} from 'react'
+import {FC, useState} from 'react'
 import {IPhotoCollageProps} from './PhotoCollageTypes'
 import classes from './PhotoCollage.module.sass'
 import {v4 as uuid} from 'uuid'

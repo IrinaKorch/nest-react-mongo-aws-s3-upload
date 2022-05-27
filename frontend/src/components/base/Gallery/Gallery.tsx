@@ -1,4 +1,4 @@
-import React, {FC, useState, MouseEvent, createRef, useRef} from 'react'
+import React, {FC, useState, MouseEvent, useRef} from 'react'
 import classes from './Gallery.module.sass'
 import Swipe from '../Swipe/Swipe'
 import Button from '../Button/Button'
@@ -111,6 +111,7 @@ const Gallery: FC<IGalleryProps> = (props: IGalleryProps) => {
              />
            )
          }
+         return null
        })}
 
        <Swipe className={classes.Swipe} {...swipeProps}/>

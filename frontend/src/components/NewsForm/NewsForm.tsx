@@ -7,8 +7,8 @@ import DateInput from '../base/DateInput/DateInput'
 import FileInput from '../base/FileInput/FileInput'
 import { v4 as uuid } from 'uuid'
 import Button from '../base/Button/Button'
-import {ButtonPurpose} from '../base/Button/ButtonTypes'
-import NewsList from '../NewsList/NewsList'
+// import {ButtonPurpose} from '../base/Button/ButtonTypes'
+// import NewsList from '../NewsList/NewsList'
 import PhotoCollage from '../base/PhotoCollage/PhotoCollage'
 
 
