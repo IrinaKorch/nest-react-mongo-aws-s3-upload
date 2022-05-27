@@ -35,11 +35,13 @@ $duration: 0.7s
       transform: translate(-50%, -50%)
       transition: transform $duration, top 0.3s, left $duration
       &.onRight
+        top: 50%
         left: 100%
-        transform: translate(0)
+        transform: translate(0, -50%)
       &.onLeft
+        top: 50%
         left: 0
-        transform: translate(-100%)
+        transform: translate(-100%, -50%)
       &.onTop
         left: 50%
         top: 0
@@ -85,11 +87,7 @@ $duration: 0.7s
       img
         max-width: 70%
         max-height: 90%
-        transition: transform $duration, left $duration, top $duration
-        &.onRight
-          transform: translate(0)
-        &.onLeft
-          transform: translate(-100%)
+
     .prev, .next
       display: flex
   .Swipe
