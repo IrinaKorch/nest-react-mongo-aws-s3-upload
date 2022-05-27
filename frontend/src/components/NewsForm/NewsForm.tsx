@@ -19,8 +19,8 @@ const NewsForm: React.FC = () => {
         e.preventDefault()
         console.log("click!")
       }}>
-        <DateInput/>
-        <TextInput label={'Заголовок'}/>
+        <DateInput className={classes.dateInput}/>
+        <TextInput className={classes.titleInput} label={'Заголовок'}/>
         <Textarea/>
         <FileInput accept={'image/*'} multiple={true} name='newsImageInput' id={uuid()}/>
         <PhotoCollage
@@ -34,6 +34,20 @@ const NewsForm: React.FC = () => {
             'https://mirpozitiva.ru/wp-content/uploads/2019/11/1472042660_10.jpg',
             'https://img1.akspic.ru/previews/6/3/3/7/6/167336/167336-oblako-burya-rastenie-atmosfera-prirodnyj_landshaft-500x.jpg',
           ]}
+          key={uuid()}
+        />
+        <PhotoCollage
+          images={[
+            'https://st.depositphotos.com/2547675/3009/i/450/depositphotos_30094505-stock-photo-time-clock.jpg',
+            'https://telecomdom.com/wp-content/uploads/2020/02/kartinki-na-telefon-5-576x1024.jpg',
+            'https://img1.akspic.ru/previews/6/3/3/7/6/167336/167336-oblako-burya-rastenie-atmosfera-prirodnyj_landshaft-500x.jpg',
+            'https://st.depositphotos.com/2547675/3009/i/450/depositphotos_30094505-stock-photo-time-clock.jpg',
+            'https://telecomdom.com/wp-content/uploads/2020/02/kartinki-na-telefon-5-576x1024.jpg',
+            'https://mirpozitiva.ru/wp-content/uploads/2019/11/1472042660_10.jpg',
+            'https://mirpozitiva.ru/wp-content/uploads/2019/11/1472042660_10.jpg',
+            'https://img1.akspic.ru/previews/6/3/3/7/6/167336/167336-oblako-burya-rastenie-atmosfera-prirodnyj_landshaft-500x.jpg',
+          ]}
+          key={uuid()}
         />
         <Button type={'submit'}>Опубликовать</Button>
       </Form>

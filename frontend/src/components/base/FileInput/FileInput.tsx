@@ -20,7 +20,7 @@ const FileInput: FC<IFileInputProps> = (props: IFileInputProps) => {
       <label htmlFor={props.id} className={classes.FileInput}>
         <i className="fas fa-paperclip"/>
         <p>{sources.length ?? "empty"}</p>
-        <input className={classes.DateInput} type="file" ref={inputRef} onChange={changeHandler} {...props}/>
+        <input type="file" ref={inputRef} onChange={changeHandler} {...props} className={[props.className, classes.DateInput].join(' ')}/>
       </label>
       <PhotoCollage images={sources}/>
     </>

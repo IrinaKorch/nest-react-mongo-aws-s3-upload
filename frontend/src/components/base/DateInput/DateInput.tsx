@@ -13,7 +13,7 @@ const DateInput: FC<IDateInputProps> = (props: IDateInputProps) => {
 
   return (
     <>
-      <input className={classes.DateInput} type="date" value={value} onChange={changeHandler} {...props}/>
+      <input type="date" value={value} onChange={changeHandler} {...props} className={[props.className, classes.DateInput].join(' ')}/>
     </>
   )
 }

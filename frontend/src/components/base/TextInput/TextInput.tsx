@@ -14,7 +14,7 @@ const TextInput: FC<IInputProps> = (props: IInputProps) => {
   return (
     <div className={classes.TextInput}>
       {props.label ? <label className={classes.label} htmlFor={props.name}>{props.label}</label> : null}
-      <input className={classes.input} type="text" value={value} onChange={changeHandler} {...props}/>
+      <input type="text" value={value} onChange={changeHandler} {...props} className={[props.className, classes.input].join(' ')}/>
     </div>
   )
 }

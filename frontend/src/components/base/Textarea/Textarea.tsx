@@ -13,7 +13,7 @@ const Textarea: FC<ITextareaProps> = (props: ITextareaProps) => {
 
   return (
     <>
-      <textarea className={classes.Textarea} value={value} onChange={changeHandler} {...props}/>
+      <textarea value={value} onChange={changeHandler} {...props} className={[props.className, classes.Textarea].join(' ')}/>
     </>
   )
 }

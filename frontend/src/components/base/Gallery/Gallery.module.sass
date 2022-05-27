@@ -1,0 +1,96 @@
+@import '../../../variables'
+
+$duration: 0.7s
+
+.Gallery
+  position: fixed
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  z-index: 100
+  .activeWindow
+    position: relative
+    width: 100vw
+    height: 100vh
+    display: flex
+    align-items: center
+
+    .Swipe
+      position: absolute
+      width: 100%
+      height: 80%
+      align-self: flex-end
+
+    img
+      position: absolute
+      display: block
+      max-width: 100%
+      max-height: 100%
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)
+      transition: transform $duration, top 0.3s, left $duration
+      &.onRight
+        left: 100%
+        transform: translate(0)
+      &.onLeft
+        left: 0
+        transform: translate(-100%)
+      &.onTop
+        left: 50%
+        top: 0
+        transform: translate(-50%, -100%)
+      &.onBottom
+        left: 50%
+        top: 100%
+        transform: translate(-50%, 0%)
+
+
+    .prev, .next
+      display: flex
+      position: absolute
+      top: calc(50% - 25px)
+      &.hidden
+        background-color: transparent
+        color: transparent
+        transition: background-color 0.5s, color 0.5s, z-index 2s
+    .prev
+      left: 0
+    .next
+      right: 0
+
+    .back
+      position: fixed
+      left: 10px
+      top: 10px
+      align-self: flex-start
+
+      transition: color, background-color ease-out 1s
+      &.shown
+        display: flex
+      &.hidden
+        color: transparent
+        background-color: transparent
+        border: transparent
+        transition: color 0.3s, background-color 0.3s
+
+@media (min-width: 768px)
+
+  .Gallery
+    .activeWindow
+      img
+        max-width: 70%
+        max-height: 90%
+        transition: transform $duration, left $duration, top $duration
+        &.onRight
+          transform: translate(0)
+        &.onLeft
+          transform: translate(-100%)
+    .prev, .next
+      display: flex
+  .Swipe
+    display: none

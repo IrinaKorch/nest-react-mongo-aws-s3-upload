@@ -1,6 +1,10 @@
 @import '../../../variables'
 
 .Button
+  display: flex
+  align-items: center
+  justify-content: center
+  gap: 10px
   margin: 15px 10px
   padding: 10px
   outline: none
@@ -9,6 +13,7 @@
   min-width: 40px
   height: 40px
   border: transparent
+  cursor: pointer
   &:hover
     box-shadow: $shadow-big-dark
   &:active
@@ -48,3 +53,28 @@
       color: $danger
       background: white
       border: 1px solid $danger
+  &.dark
+    color: white
+    font-size: x-large
+    background: rgba(60, 64, 72, 0.8)
+    box-shadow: none
+    &:hover
+      color: white
+      border: none
+      background: rgba(79, 81, 93, 0.8)
+  &.transparent
+    color: white
+    font-size: large
+    box-shadow: none
+    background: rgba(0, 0, 0, 0.8)
+    &:hover
+      color: white
+      border: none
+      background: rgba(0, 0, 0, 0.8)
+
+.round
+  border-radius: 50%
+  margin: 15px
+  padding: 10px
+  min-width: 50px
+  min-height: 50px
