@@ -29,7 +29,7 @@ const PhotoCollage: FC<IPhotoCollageProps> = (props: IPhotoCollageProps) => {
       lastImages = images.filter((img, idx) => idx > 0)
     }
     if (images.length>5) {
-      extraImages = images.length - 5
+      extraImages = images.length - 4
     }
   }
 

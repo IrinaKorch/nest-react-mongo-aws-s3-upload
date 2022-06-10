@@ -1,10 +1,12 @@
 @import '../../variables'
 
-.NewsForm
+.NewsFormContainer
   @include flex-col
   @extend .container-gapless-md
   margin-top: 15px
-
+  .NewsForm
+    @include flex-col
+    width: 100%
   .dateInput
     width: 100%
     background: white

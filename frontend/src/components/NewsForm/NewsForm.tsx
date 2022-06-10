@@ -1,58 +1,67 @@
+import {FC} from 'react'
+import {SubmitHandler, useForm} from 'react-hook-form'
+import moment from 'moment'
 import classes from './NewsForm.module.sass'
-import React from 'react'
-import TextInput from '../base/TextInput/TextInput'
-import Form from '../base/Form/Form'
-import Textarea from '../base/Textarea/Textarea'
-import DateInput from '../base/DateInput/DateInput'
-import FileInput from '../base/FileInput/FileInput'
-import { v4 as uuid } from 'uuid'
-import Button from '../base/Button/Button'
-// import {ButtonPurpose} from '../base/Button/ButtonTypes'
-// import NewsList from '../NewsList/NewsList'
+import Form from '../base/formControls/Form/Form'
+import DateInput from '../base/formControls/DateInput/DateInput'
+import TextInput from '../base/formControls/TextInput/TextInput'
+import Textarea from '../base/formControls/Textarea/Textarea'
+import FileInput from '../base/formControls/FileInput/FileInput'
+import FilePreview from '../base/FilePrewiew/FilePreview'
+import ImageInput from '../base/formControls/ImageInput/ImageInput'
 import PhotoCollage from '../base/PhotoCollage/PhotoCollage'
+import Button from '../base/Button/Button'
+import {useFiles} from '../../hooks/useFiles/useFiles'
+import InputGroup from '../base/formControls/InputGroup/InputGroup'
 
-
-const NewsForm: React.FC = () => {
-  return (
-    <div className={classes.NewsForm}>
-      <Form onSubmit={(e) => {
-        e.preventDefault()
-        console.log("click!")
-      }}>
-        <DateInput className={classes.dateInput}/>
-        <TextInput className={classes.titleInput} label={'Заголовок'}/>
-        <Textarea/>
-        <FileInput accept={'image/*'} multiple={true} name='newsImageInput' id={uuid()}/>
-        <PhotoCollage
-          images={[
-            'https://st.depositphotos.com/2547675/3009/i/450/depositphotos_30094505-stock-photo-time-clock.jpg',
-            'https://telecomdom.com/wp-content/uploads/2020/02/kartinki-na-telefon-5-576x1024.jpg',
-            'https://img1.akspic.ru/previews/6/3/3/7/6/167336/167336-oblako-burya-rastenie-atmosfera-prirodnyj_landshaft-500x.jpg',
-            'https://st.depositphotos.com/2547675/3009/i/450/depositphotos_30094505-stock-photo-time-clock.jpg',
-            'https://telecomdom.com/wp-content/uploads/2020/02/kartinki-na-telefon-5-576x1024.jpg',
-            'https://mirpozitiva.ru/wp-content/uploads/2019/11/1472042660_10.jpg',
-            'https://mirpozitiva.ru/wp-content/uploads/2019/11/1472042660_10.jpg',
-            'https://img1.akspic.ru/previews/6/3/3/7/6/167336/167336-oblako-burya-rastenie-atmosfera-prirodnyj_landshaft-500x.jpg',
-          ]}
-          key={uuid()}
-        />
-        <PhotoCollage
-          images={[
-            'https://st.depositphotos.com/2547675/3009/i/450/depositphotos_30094505-stock-photo-time-clock.jpg',
-            'https://telecomdom.com/wp-content/uploads/2020/02/kartinki-na-telefon-5-576x1024.jpg',
-            'https://img1.akspic.ru/previews/6/3/3/7/6/167336/167336-oblako-burya-rastenie-atmosfera-prirodnyj_landshaft-500x.jpg',
-            'https://st.depositphotos.com/2547675/3009/i/450/depositphotos_30094505-stock-photo-time-clock.jpg',
-            'https://telecomdom.com/wp-content/uploads/2020/02/kartinki-na-telefon-5-576x1024.jpg',
-            'https://mirpozitiva.ru/wp-content/uploads/2019/11/1472042660_10.jpg',
-            'https://mirpozitiva.ru/wp-content/uploads/2019/11/1472042660_10.jpg',
-            'https://img1.akspic.ru/previews/6/3/3/7/6/167336/167336-oblako-burya-rastenie-atmosfera-prirodnyj_landshaft-500x.jpg',
-          ]}
-          key={uuid()}
-        />
-        <Button type={'submit'}>Опубликовать</Button>
-      </Form>
-    </div>
-  );
+type NewsFormValues = {
+  date: string
+  title: string
+  text: string
+  images: File[] | FileList
+  files: File[] | FileList
 }
 
-export default NewsForm;
+const NewsForm: FC = () => {
+
+  const { register, watch, handleSubmit } = useForm<NewsFormValues>({
+    defaultValues: {
+      date: moment(new Date()).format('YYYY-MM-DD'),
+      title: '',
+      text: '',
+    }
+  })
+  const files = watch('files')
+  const imageFiles = watch('images')
+  const sortedFiles = useFiles(files)
+  const { images } = useFiles(imageFiles)
+  const submitHandler: SubmitHandler<NewsFormValues> = (data) => {
+    console.log(data)
+  }
+
+  return (
+    <div className={classes.NewsFormContainer}>
+      <Form onSubmit={handleSubmit(submitHandler)} className={classes.NewsForm}>
+        <DateInput
+          register={register('date', {valueAsDate: true})}
+          className={classes.dateInput}
+        />
+        <TextInput
+          register={register('title')}
+          className={classes.titleInput}
+          placeholder={'Заголовок'}
+        />
+        <Textarea register={register('text')}/>
+        <InputGroup>
+          <FileInput register={register('files')} multiple={true}/>
+          <ImageInput register={register('images')} multiple={true}/>
+        </InputGroup>
+        <FilePreview {...sortedFiles} {...sortedFiles.docs}/>
+        <PhotoCollage images={images.map(image => image.src)}/>
+        <Button type='submit'>Опубликовать</Button>
+      </Form>
+    </div>
+  )
+}
+
+export default NewsForm

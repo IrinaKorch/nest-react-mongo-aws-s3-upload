@@ -19,11 +19,7 @@ const Gallery: FC<IGalleryProps> = (props: IGalleryProps) => {
     return null
   }
 
-
-  let isNavigationShown: boolean = false
-  if (images.length > 1) {
-    isNavigationShown = true
-  }
+  const lastIndex = images.length-1
 
   const toggleControls = () => {
     if (showControls === "shown") {
@@ -39,18 +35,18 @@ const Gallery: FC<IGalleryProps> = (props: IGalleryProps) => {
   }
 
   const setNext = () => {
-    if (activeIndex < images.length-1) {
+    if (activeIndex < lastIndex) {
       setActiveIndex(activeIndex+1)
     } else {
-      setActiveIndex(0)
+      return
     }
   }
 
   const setPrev = () => {
     if (activeIndex > 0) {
-      setActiveIndex(activeIndex- 1)
+      setActiveIndex(activeIndex - 1)
     } else {
-      setActiveIndex(images.length - 1)
+      return
     }
   }
 
@@ -79,15 +75,13 @@ const Gallery: FC<IGalleryProps> = (props: IGalleryProps) => {
  return (
    <div className={[classes.Gallery, props.className].join(' ')}>
      <div className={classes.activeWindow}>
-
        <Backdrop className={classes.backdrop} onClick={(e)=> handleMouseEvent(e, setNull)}/>
 
        {images.map((image, index) => {
-         if (index === activeIndex - 1 || (activeIndex === 0 && index === images.length-1)) {
+         if (index < activeIndex) {
            return (
              <img
                className={classes.onLeft}
-               onClick={(e)=> handleMouseEvent(e, setNext)}
                src={images[index]}
                alt=""
              />
@@ -101,11 +95,10 @@ const Gallery: FC<IGalleryProps> = (props: IGalleryProps) => {
                alt=""
              />
            )
-         } else if (index === activeIndex + 1 ||  (activeIndex === images.length-1 && index === 0)) {
+         } else if (index > activeIndex) {
            return (
              <img
                className={classes.onRight}
-               onClick={(e)=> handleMouseEvent(e, setNext)}
                src={images[index]}
                alt=""
              />
@@ -116,8 +109,14 @@ const Gallery: FC<IGalleryProps> = (props: IGalleryProps) => {
 
        <Swipe className={classes.Swipe} {...swipeProps}/>
        <Button className={`${classes.back} ${classes[showControls]}`} onClick={(e)=> handleMouseEvent(e, setNull)} view={ButtonView.transparent} purpose={ButtonPurpose.back}>{`${activeIndex+1} из ${images.length}`}</Button>
-       {isNavigationShown && <Button className={`${classes.prev} ${classes[showControls]}`} onClick={(e)=> handleMouseEvent(e, setPrev)} purpose={ButtonPurpose.previous} view={ButtonView.dark} round={true}/>}
-       {isNavigationShown && <Button className={`${classes.next} ${classes[showControls]}`} onClick={(e)=> handleMouseEvent(e, setNext)} purpose={ButtonPurpose.next} view={ButtonView.dark} round={true}/>}
+       {
+         activeIndex!==0 &&
+         <Button className={`${classes.prev} ${classes[showControls]}`} onClick={(e)=> handleMouseEvent(e, setPrev)} purpose={ButtonPurpose.previous} view={ButtonView.dark} round={true}/>
+       }
+       {
+         activeIndex!==lastIndex &&
+         <Button className={`${classes.next} ${classes[showControls]}`} onClick={(e)=> handleMouseEvent(e, setNext)} purpose={ButtonPurpose.next} view={ButtonView.dark} round={true}/>
+       }
 
      </div>
    </div>

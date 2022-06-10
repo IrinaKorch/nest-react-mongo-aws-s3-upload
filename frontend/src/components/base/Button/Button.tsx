@@ -12,10 +12,10 @@ function Button(props: IButtonProps) {
   const classNames: string = [classes.Button, classes[purpose], classes[view], round && classes.round, className].join(' ')
 
   if (purpose === ButtonPurpose.back) {
-    return <button {...props} className={classNames}>{icon}{props.children}</button>
+    return <button type="button" {...props} className={classNames}>{icon}{props.children}</button>
   }
   return (
-    <button {...props} className={classNames}>{props.children}{icon}</button>
+    <button type="button" {...props} className={classNames}>{props.children}{icon}</button>
   )
 }
 

@@ -1,4 +1,4 @@
-@import '../../../variables'
+@import '../../../../variables'
 
 .TextInput
   @include flex-row
@@ -12,9 +12,12 @@
   border-radius: 0 3px 3px 0
   outline: none
   overflow: hidden
+  &.lonely
+    border-radius: 3px
   &::placeholder
-    color: $gray
+    color: $theme-color-light
     font-size: small
+    font-weight: normal
 
 .label
   display: flex

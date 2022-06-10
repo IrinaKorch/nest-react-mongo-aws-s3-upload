@@ -1,6 +1,6 @@
 import React
   // ,{useEffect, useState}
-  from 'react'
+  , {FC} from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 // import axios from 'axios'
 import classes from './App.module.sass'
@@ -9,7 +9,7 @@ import NewsForm from './components/NewsForm/NewsForm'
 // import {INewsList} from './types/News'
 // import Navbar from './components/Navbar/Navbar'
 
-const App: React.FC = () => {
+const App: FC = () => {
 
   // const [newsList, setNewsList] = useState<INewsList>([])
 

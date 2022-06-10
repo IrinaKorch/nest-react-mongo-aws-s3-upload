@@ -1,16 +1,17 @@
-@import '../../../variables'
+@import '../../../../variables'
 
-.Textarea
+.DateInput
   @include flex-row
-  resize: vertical
-  height: 75px
-  margin: 0 0 5px 0
+  flex: 1 0 100%
+  display: flex
+  margin: 5px 0
   padding: 10px
   border: 1px solid $theme-color-dark
   border-radius: 3px
   outline: none
-  //font-size: initial
-
   &::placeholder
     color: $gray
     font-size: small
+
+
+
